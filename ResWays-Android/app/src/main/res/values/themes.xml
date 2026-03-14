@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.ResWays" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/emerald_green</item>
+        <item name="colorPrimaryVariant">@color/olive_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/terracotta</item>
+        <item name="colorSecondaryVariant">@color/terracotta</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/off_white</item>
+    </style>
+</resources>
