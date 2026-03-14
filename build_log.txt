@@ -18,8 +18,8 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :app:mapDebugSourceSetPaths
 > Task :app:generateDebugResources
 > Task :app:packageDebugResources
-> Task :app:mergeDebugResources
 > Task :app:createDebugCompatibleScreenManifests
+> Task :app:mergeDebugResources
 > Task :app:extractDeepLinksDebug
 > Task :app:parseDebugLocalResources
 > Task :app:processDebugMainManifest
@@ -30,29 +30,29 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :app:mergeDebugAssets
 > Task :app:compressDebugAssets
 > Task :app:processDebugJavaRes NO-SOURCE
-> Task :app:processDebugManifestForPackage
-> Task :app:mergeDebugJavaResource
 > Task :app:desugarDebugFileDependencies
 > Task :app:mergeDebugJniLibFolders
+> Task :app:processDebugManifestForPackage
 > Task :app:checkDebugDuplicateClasses
-> Task :app:mergeDebugNativeLibs NO-SOURCE
-> Task :app:processDebugResources FAILED
+> Task :app:mergeDebugJavaResource
+> Task :app:processDebugResources
 > Task :app:mergeExtDexDebug
 
-FAILURE: Build failed with an exception.
+> Task :app:compileDebugJavaWithJavac
+Note: /home/runner/work/ResWays/ResWays/ResWays-Android/app/src/main/java/com/resways/app/ui/MainPartnerActivity.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
 
-* What went wrong:
-Execution failed for task ':app:processDebugResources'.
-> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
-   > Android resource linking failed
-     ERROR: /home/runner/work/ResWays/ResWays/ResWays-Android/app/src/main/res/layout/activity_main_customer.xml:32: AAPT: error: resource color/dark_grey (aka com.resways.app:color/dark_grey) not found.
-         
+> Task :app:mergeLibDexDebug
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:mergeProjectDexDebug
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
 
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
-
-BUILD FAILED in 1m 9s
-21 actionable tasks: 21 executed
+BUILD SUCCESSFUL in 1m 24s
+30 actionable tasks: 30 executed
