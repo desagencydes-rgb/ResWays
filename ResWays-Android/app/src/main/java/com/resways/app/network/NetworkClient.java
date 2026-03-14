@@ -12,7 +12,7 @@ public class NetworkClient {
     
     // Change this to your Laptop's IP address when running on a physical phone. 
     // 10.0.2.2 is the localhost for the Android Emulator.
-    public static final String BASE_URL = "http://10.0.2.2:8080/ResWays-Backend-1.0-SNAPSHOT/api";
+    public static final String BASE_URL = "http://192.168.100.27:8080/ResWays-Backend-1.0-SNAPSHOT/api";
 
     private NetworkClient(Context context) {
         ctx = context;
