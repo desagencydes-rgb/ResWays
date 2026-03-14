@@ -26,7 +26,17 @@ jobs:
 
     - name: Build with Gradle
       working-directory: ./ResWays-Android
-      run: gradle assembleDebug
+      run: gradle assembleDebug > build_log.txt 2>&1 || true
+
+    - name: Commit build log
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git pull origin main
+        mv ./ResWays-Android/build_log.txt ./build_log.txt
+        git add build_log.txt
+        git commit -m "Upload build log"
+        git push origin HEAD:main
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
