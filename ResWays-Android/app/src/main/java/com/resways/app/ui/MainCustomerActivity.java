@@ -66,7 +66,17 @@ public class MainCustomerActivity extends AppCompatActivity {
         });
 
         bagsList = new ArrayList<>();
-        
+
+        FloatingActionButton fabLogout = findViewById(R.id.fabLogout);
+        if (fabLogout != null) {
+            fabLogout.setOnClickListener(v -> {
+                com.resways.app.models.UserSession.getInstance().setUserId(null);
+                com.resways.app.models.UserSession.getInstance().setRole(null);
+                startActivity(new android.content.Intent(this, LoginActivity.class));
+                finish();
+            });
+        }
+
         if (USE_DUMMY_DATA) {
             loadDummyData();
         } else {
@@ -77,9 +87,8 @@ public class MainCustomerActivity extends AppCompatActivity {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         checkLocationPermission();
 
-        // Apply Local AI context sorting before displaying list
+        // Sort then attach adapter
         MoodAiEngine.sortBagsByContext(bagsList);
-
         adapter = new BagsAdapter(bagsList);
         bagsRecyclerView.setAdapter(adapter);
     }
@@ -136,27 +145,51 @@ public class MainCustomerActivity extends AppCompatActivity {
 
     private void loadDummyData() {
         bagsList.clear();
-        SurpriseBag.User user1 = new SurpriseBag.User();
-        user1.setId(1L);
-        user1.setName("Patisserie Amine");
 
+        SurpriseBag.User u1 = new SurpriseBag.User(); u1.setId(2L); u1.setName("Patisserie Amine");
         SurpriseBag bag1 = new SurpriseBag();
-        bag1.setId(1L);
-        bag1.setRestaurant(user1);
-        bag1.setName("Surprise Pastry Box");
-        bag1.setOldPrice(60.0);
-        bag1.setNewPrice(20.0);
-        bag1.setLat(33.5731); // Casa coords for dummy data
-        bag1.setLng(-7.5898);
-        bag1.setDistanceKm(1.2);
+        bag1.setId(1L); bag1.setRestaurant(u1); bag1.setName("Surprise Pastry Box");
+        bag1.setOldPrice(60.0); bag1.setNewPrice(20.0);
+        bag1.setLat(33.5731); bag1.setLng(-7.5898); bag1.setDistanceKm(1.2);
         bag1.setStatus("Available");
-        
         bagsList.add(bag1);
-        
+
+        SurpriseBag.User u2 = new SurpriseBag.User(); u2.setId(3L); u2.setName("Boulangerie Atlas");
+        SurpriseBag bag2 = new SurpriseBag();
+        bag2.setId(2L); bag2.setRestaurant(u2); bag2.setName("Morning Bread Bag");
+        bag2.setOldPrice(30.0); bag2.setNewPrice(10.0);
+        bag2.setLat(33.5742); bag2.setLng(-7.5901); bag2.setDistanceKm(2.0);
+        bag2.setStatus("Available");
+        bagsList.add(bag2);
+
+        SurpriseBag.User u3 = new SurpriseBag.User(); u3.setId(4L); u3.setName("Restaurant Zitoun");
+        SurpriseBag bag3 = new SurpriseBag();
+        bag3.setId(3L); bag3.setRestaurant(u3); bag3.setName("Tagine Surprise Box");
+        bag3.setOldPrice(80.0); bag3.setNewPrice(25.0);
+        bag3.setLat(33.5700); bag3.setLng(-7.5870); bag3.setDistanceKm(0.8);
+        bag3.setStatus("Available");
+        bagsList.add(bag3);
+
+        SurpriseBag.User u4 = new SurpriseBag.User(); u4.setId(5L); u4.setName("Maison du Couscous");
+        SurpriseBag bag4 = new SurpriseBag();
+        bag4.setId(4L); bag4.setRestaurant(u4); bag4.setName("Friday Couscous Deal");
+        bag4.setOldPrice(90.0); bag4.setNewPrice(30.0);
+        bag4.setLat(33.5760); bag4.setLng(-7.5920); bag4.setDistanceKm(3.1);
+        bag4.setStatus("Available");
+        bagsList.add(bag4);
+
+        SurpriseBag.User u5 = new SurpriseBag.User(); u5.setId(6L); u5.setName("Grill House Marrakchi");
+        SurpriseBag bag5 = new SurpriseBag();
+        bag5.setId(5L); bag5.setRestaurant(u5); bag5.setName("Mixed Grill Dinner Box");
+        bag5.setOldPrice(120.0); bag5.setNewPrice(40.0);
+        bag5.setLat(33.5680); bag5.setLng(-7.5855); bag5.setDistanceKm(1.7);
+        bag5.setStatus("Available");
+        bagsList.add(bag5);
+
         if (tvMoneySaved != null) {
-            tvMoneySaved.setText("80.0 MAD");
-            tvMealsRescued.setText("2");
-            tvCo2Saved.setText("5.0 KG");
+            tvMoneySaved.setText("220.0 MAD");
+            tvMealsRescued.setText("5");
+            tvCo2Saved.setText("12.5 KG");
         }
     }
     

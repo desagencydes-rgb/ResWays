@@ -80,7 +80,9 @@ public class LoginActivity extends AppCompatActivity {
                             // FALLBACK FOR DEMO IF SERVER IS OFF
                             Toast.makeText(this, "Server Offline. Using Demo Login Mode.", Toast.LENGTH_LONG).show();
                             UserSession.getInstance().setUserId(1L);
-                            if (radioCustomer.isChecked()) {
+                            String demoRole = radioCustomer.isChecked() ? "CUSTOMER" : "PARTNER";
+                            UserSession.getInstance().setRole(demoRole);
+                            if ("CUSTOMER".equals(demoRole)) {
                                 startActivity(new Intent(LoginActivity.this, MainCustomerActivity.class));
                             } else {
                                 startActivity(new Intent(LoginActivity.this, MainPartnerActivity.class));

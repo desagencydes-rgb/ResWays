@@ -67,6 +67,14 @@ public class MainPartnerActivity extends AppCompatActivity {
         fetchStoreBagsFromApi();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (adapter != null) {
+            fetchStoreBagsFromApi();
+        }
+    }
+
     private void fetchStoreBagsFromApi() {
         Long storeId = UserSession.getInstance().getUserId();
         if (storeId == null) storeId = 1L; // Fallback for testing

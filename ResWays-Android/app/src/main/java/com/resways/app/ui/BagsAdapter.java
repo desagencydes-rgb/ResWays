@@ -69,6 +69,9 @@ public class BagsAdapter extends RecyclerView.Adapter<BagsAdapter.BagViewHolder>
                             response -> {
                                 try {
                                     String pin = response.getString("reservationCode");
+                                    bag.setStatus("Reserved");
+                                    bag.setReservationCode(pin);
+                                    notifyItemChanged(position);
                                     android.content.Intent intent = new android.content.Intent(v.getContext(), ReservationActivity.class);
                                     intent.putExtra("RESTAURANT_NAME", bag.getRestaurantName());
                                     intent.putExtra("BAG_ID", String.valueOf(bag.getId()));
@@ -81,13 +84,15 @@ public class BagsAdapter extends RecyclerView.Adapter<BagsAdapter.BagViewHolder>
                             },
                             error -> {
                                 // FALLBACK FOR DEMO
+                                String demoPin = "7392";
+                                bag.setStatus("Reserved");
+                                bag.setReservationCode(demoPin);
+                                notifyItemChanged(position);
                                 android.content.Intent intent = new android.content.Intent(v.getContext(), ReservationActivity.class);
                                 intent.putExtra("RESTAURANT_NAME", bag.getRestaurantName());
                                 intent.putExtra("BAG_ID", String.valueOf(bag.getId()));
-                                intent.putExtra("PIN", "7392");
+                                intent.putExtra("PIN", demoPin);
                                 v.getContext().startActivity(intent);
-                                holder.reserveBtn.setEnabled(true);
-                                holder.reserveBtn.setText("Reserve");
                             });
 
                     NetworkClient.getInstance(v.getContext()).addToRequestQueue(request);
